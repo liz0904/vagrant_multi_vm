@@ -5,14 +5,14 @@
 
 rm -f postinstall.sh
 
-apt-get update
+sudo apt-get update
 # mysql username: root
 # mysql password: rootpass
-debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password password rootpass'
-debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password_again password rootpass'
-apt-get -y install mysql-server php5-mysql
+sudo debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password password rootpass'
+sudo debconf-set-selections <<< 'mysql-server-5.5 mysql-server/root_password_again password rootpass'
+sudo apt-get -y install mysql-server php-mysql
 
-sed -i "s/bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" "/etc/mysql/my.cnf"
+sudo sed -i "s/bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" "/etc/mysql/my.cnf"
 
 # Allow root access from any host
 echo "GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY 'rootpass' WITH GRANT OPTION; FLUSH PRIVILEGES;" | mysql -u root --password=rootpass
