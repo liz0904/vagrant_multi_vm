@@ -5,8 +5,8 @@
 rm -f postinstall.sh
 
 #install apache and php
-apt-get update
-apt-get install -y apache2 php5 libapache2-mod-php5 php5-mcrypt php5-mysql mysql-client
+sudo apt-get update
+sudo apt-get install -y apache2 php libapache2-mod-php php-mcrypt php-mysql mysql-client
 sudo service apache2 restart
 
 echo "extension=php_mysql.so" >> /etc/php5/apache2/php.ini
